@@ -246,6 +246,43 @@ nav a:hover {
         float: right;
         width: 28%;
     }
+
+    .main article2 {
+        float: left;
+        width: 85%;
+    }
+
+     .main article3 {
+        float: left;
+        width: 45%;
+    }
+
+    .main aside {
+        float: right;
+        width: 28%;
+    }
+
+    .main aside3 {
+        float: right;
+        width: 45%;
+    }
+
+
+    /* Thick red border */
+    hr.new4 {
+      border: 1px solid red;
+    }
+
+    /* Large rounded green border */
+    hr.new5 {
+      border: 10px solid green;
+      border-radius: 5px;
+    }
+ 
+    img {
+	margin-right: 15px;
+    }
+
 }
 
 @media only screen and (min-width: 1140px) {
