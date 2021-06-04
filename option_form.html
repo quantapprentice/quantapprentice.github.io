@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Option Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="get_local_storage()">
+      
+<div>
+
+<form> Call/Put
+    <select name="c_p"id = "c_p" >
+      <option value="call">Call</option>
+      <option value="put">Put</option>
+   </select> &nbsp&nbsp
+  <label for="bday">Enter Expiration Date:
+    <input type="date" name="bday" id="myDate" required pattern="\d{4}-\d{2}-\d{2}">
+    <span class="validity"></span>
+  </label>
+  <p>
+
+    <button onclick="myFunction()"> Submit</button>
+  </p>
+</form>
+</div>
+
+
+<script>
+  
+ //  if supports_html5_storage(){
+ //    alert("supports local storage") ;
+ // }
+  
+
+function myFunction() {
+//  document.getElementById("myDate").value = "2014-02-09";
+var dat ;
+dat = document.getElementById("myDate").value
+alert("date entered = " + dat)  ;
+}
+
+ function get_local_storage(){
+ var stor =	 supports_html5_storage() ;
+	 alert("stor = " + stor ) ;
+ }
+function supports_html5_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    alert("localstorage not supported")  ;
+    return false;
+  }
+}
+</script>
+
+
+
+</body>
+</html>
