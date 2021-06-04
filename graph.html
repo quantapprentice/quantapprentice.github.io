@@ -116,7 +116,16 @@ th {
     border-top: none;
 }
 
-           </style>
+  .textlist {
+     resize: none;
+     height: 240px;
+     width: 110px;
+     padding: 0px 0px opx 0px;
+     border:solid 1px #f41000;
+      }
+
+
+    </style>
     
 
         <div>Trading Charts   &nbsp;&nbsp;&nbsp;&nbsp; ver 0.1</div>
@@ -183,6 +192,20 @@ th {
                       <input id="btnConnect"    type="button" value="unassigned4"  onclick="onConnectClick()" disabled="disabled">
 		              <br><br>
                       <input id="btnConnect"    type="button" value="unassigned5"  onclick="onConnectClick()" disabled="disabled">  
+		      <br><br>
+		      <textarea class="textlist" id="greeks_list">
+Position Greeks
+
+theta:21.23
+delta:33.1
+vega:41.4
+gamma:.32
+rho:
+vomma:
+charm:
+
+			</textarea>
+			<br>
 
                     </td>
                     <td colspan="20">
