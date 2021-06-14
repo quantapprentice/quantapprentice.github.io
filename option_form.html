@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html>
@@ -7,7 +8,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onload="get_local_storage()">
+    <body >
       
 <div>
 
@@ -16,36 +17,297 @@
       <option value="call">Call</option>
       <option value="put">Put</option>
    </select> &nbsp&nbsp
-  <label for="bday">Enter Expiration Date:
+  <label for="bday">Select Expiration Date:
     <input type="date" name="bday" id="myDate" required pattern="\d{4}-\d{2}-\d{2}">
     <span class="validity"></span>
-  </label>
+   </label>&nbsp&nbsp&nbsp&nbsp
+   <label>Select Strike</label>  <select name="strike" id="strike_select" style="width:100px"> 
+    <option value="200">200</option>
+    <option value="201">201</option>
+    <option value="202">202</option>
+    <option value="203">203</option>
+    <option value="204">204</option>
+    <option value="205">205</option>
+    <option value="206">206</option>
+    <option value="207">207</option>
+    </select>
   <p>
 
-    <button onclick="myFunction()"> Submit</button>
+    <button onclick="storeFunction()"> Submit</button>
   </p>
 </form>
 </div>
 
 
-<script>
-  
- //  if supports_html5_storage(){
- //    alert("supports local storage") ;
- // }
-  
 
-function myFunction() {
-//  document.getElementById("myDate").value = "2014-02-09";
-var dat ;
-dat = document.getElementById("myDate").value
-alert("date entered = " + dat)  ;
+  <table border="1" width="800" cellspacing="0" cellpadding="1">
+       <thead >
+           <tr style="font-size:18px">
+               <th width="100px">Quantity</th>
+               <th>Opra&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+               <th width="130px">Mid$</th>
+               <th>IV&nbsp;&nbsp;&nbsp;&nbsp;</th>
+               <th>Delta</th>
+               <th>Theta</th>
+               <th>Vega</th>
+               <th>Extrinsic</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr height="25px">
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+           </tr>
+           <tr height="25px">
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+           </tr>
+           <tr height="25px">
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+           </tr>
+           <tr height="25px">
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+           </tr>
+       </tbody>
+   </table>
+<br>
+
+
+<div class = "body" style="position:absolute;left:20px;" >
+<!--   ******************    include dte html  ********************  -->
+    <body onload = "detectmob()"  BGCOLOR=papayawhip  TEXT="#000000" >
+
+   <style>
+           table    { border: 2px solid black; }
+            input    { width: 200px; }
+            select   { width: 200px; }
+            textarea { width: 400px; border: 2px solid black; }
+
+            #btnConnect    { width: 100px; }
+            #btnDisconnect { width: 100px; }
+            #btnSend       { width: 100px; }
+.td1 {
+    font-size: 36px;
+	font-weight: bold ;
+    text-align: center ;
+  }
+td {
+   font-size: 12px;
+   font-weight: bold ;
+   text-align: center ;
+}
+.body {
+    min-height: 50vh;  
+    max-width: 125px;
+    background-color: papayawhip; 
+    margin: 0 auto;
+}
+   </style>
+      <div id="text1" style="font-size:10px" > </div>
+     <!--   <h2><center>DTE</center></h2> -->
+        <!-- WebSocket Connection Parameters Table -->
+        <table>
+            <tr>
+                <td class="td1" width="125px" height="35px" id = "dte0"> 39</td>
+            </tr>
+            <tr>
+                <td>Days Until</td>
+            </tr>
+            <tr>
+                <td id="month0"> Jun Options</td>
+            </tr>
+            <tr>
+                <td>Expiration</td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="btnConnect"    type="button" value="Update"    onclick="updateClick()">&nbsp;&nbsp;
+
+                </td>
+            </tr>
+        </table>
+
+        <table >
+            <tr>
+                <td class="td1" width="125px" height="35px" id = "dte1"> 39</td>
+            </tr>
+            <tr>
+                <td>Days Until</td>
+            </tr>
+            <tr>
+                <td id="month1"> Jun Options</td>
+            </tr>
+            <tr>
+                <td>Expiration</td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="btnConnect"    type="button" value="Update"    onclick="updateClick()">&nbsp;&nbsp;
+
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="td1" width="125px" id = "dte2"> 39</td>
+            </tr>
+            <tr>
+                <td>Days Until</td>
+            </tr>
+            <tr>
+                <td id="month2"> Jun Options</td>
+            </tr>
+            <tr>
+                <td>Expiration</td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="btnConnect"    type="button" value="Update"    onclick="updateClick()">&nbsp;&nbsp;
+
+                </td>
+            </tr>
+        </table>
+</div>
+
+   <script>    // start of javascript
+
+//  updateClick()   // run on load
+  var month_text ;
+
+function updateClick(){
+   var start_month_inc = 0  ;  // 0 = start at this month, 1 = start next month
+   var now = new Date() ; // get today
+   var yr = now.getFullYear() ;
+   var mo = (now.getMonth() + start_month_inc ) % 11;  // get next month; months start at 0
+   if(mo == 0){
+      yr = yr + 1 ;
+    }
+    var days = get_3rd_friday(yr,mo) ;
+    document.getElementById("dte0").innerHTML=days ;
+    document.getElementById("month0").innerHTML= month_text + " Options" ;
+    // do 2nd calendar 
+    mo = (now.getMonth() + start_month_inc + 1) % 11;  //  months start at 0
+    if(mo == 0){  // reset to jan
+       yr = yr + 1 ;
+    }  
+    var days = get_3rd_friday(yr,mo) ;
+    document.getElementById("dte1").innerHTML=days ;
+    document.getElementById("month1").innerHTML= month_text + " Options" ;
+    // do 3rd calendar
+    mo = (now.getMonth() + start_month_inc + 2) % 11;  //  months start at 0
+    if(mo == 0){
+       yr = yr + 1 ;
+    }   
+    var days = get_3rd_friday(yr,mo) ;
+    document.getElementById("dte2").innerHTML=days ;
+    document.getElementById("month2").innerHTML= month_text + " Options" ;
 }
 
- function get_local_storage(){
- var stor =	 supports_html5_storage() ;
-	 alert("stor = " + stor ) ;
+
+
+function get_3rd_friday(yr, mo){
+  var third_fri = 0 ;
+  var day_of_month = 1 ;
+  var now = new Date() ; // get today
+
+  var diff = 0 ;
+  var date = new Date(yr,mo, 1) ; // y, m, d  months start at 0  
+  for( var i = 1; i < 10; ++ i){
+    var date = new Date(yr,mo, i) ; // y, m, d  months start at 0  
+    month_text = date.toLocaleString('default', { month: 'short' });
+    console.log(month_text);  // log mon
+    if(date.getDay() == 5){   // day of week 5 = friday
+       third_fri = date.getDate() + 14 ; 
+       date = new Date(2021,mo,third_fri) ;
+	   break ;
+    }
+   }
+   diff = (date - now)/ 86400000 ;
+   return diff = Math.floor( diff ) + 1;
+}
+
+
+function get_date_from_tc(tc){
+    var dat1 =  new Date(tc ) ;  //  in milliseconds 
+    var h = dat1.getHours() ;   // 0 - 23
+    var m = dat1.getMinutes() ;
+    var mm = dat1.getMonth() ;  // 0 - 11
+    var d = dat1.getDay() ;   //  day of week  0-6
+    var dat = dat1.getDate() ;    // day of month
+    var ys = (dat1.getFullYear()).toString().slice(2,4);
+    var utc_date = dat1.getUTCDate() ;  //tda timecode for daily data is off by 1 day when converted to local time. use UTC
+    var y = (dat1.getFullYear()) -2000 ; 
+    var tzo = (new Date().getTimezoneOffset())/60 ;  // tz offset from gmt
+    var time_string = dat1.getHours() + ":"+ ("0" +dat1.getMinutes()).slice(-2) ;   // use minutes for intraday
+    var date_string = ("0" + (dat1.getMonth()+1)).slice(-2) + "/" +  ("0" + dat1.getUTCDate()).slice(-2) + "/" + (dat1.getFullYear()).toString().slice(2,4); 
+   return date_string ;
+  }
+
+
+
+function detectmob() {
+    var wid = window.innerWidth ;
+    var hei = window.innerHeight ;
+    var opsys = window.navigator.platform ;
+    var browser = window.navigator.userAgent ;
+    document.getElementById("text1").innerHTML="width " + wid + '\xa0\xa0\xa0\xa0' + "height " + hei + 
+       '\xa0\xa0\xa0' + opsys + '\xa0\xa0\xa0'    ;
+
+    if(window.innerWidth <= 800 && window.innerHeight <= 600) {
+     return true;
+   } else {
+     return false;
+   }
+}
+
+   </script>
+   
+
+
+
+<script>
+
+ function check_for_local_storage(){
+    var stor =	 supports_html5_storage() ;  // returns boolean
+    alert("stor = " + stor ) ;
  }
+
+  
+function storeFunction() {
+//  document.getElementById("myDate").value = "2014-02-09";
+ var dat ;
+ dat = document.getElementById("myDate").value
+ alert("date entered = " + dat)  ;
+ store_data("exp_date", dat.toString()) ;
+}
+
+
 function supports_html5_storage() {
   try {
     return 'localStorage' in window && window['localStorage'] !== null;
@@ -54,9 +316,19 @@ function supports_html5_storage() {
     return false;
   }
 }
+
+ function store_data(key, val){
+     localStorage.setItem(key, val);
+ }
+
+ 
+
+
 </script>
 
 
 
 </body>
 </html>
+
+
