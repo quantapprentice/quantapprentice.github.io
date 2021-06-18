@@ -187,14 +187,21 @@ function updateClick(){
    var now = new Date() ; // get today
    var yr = now.getFullYear() ;
    var mo = (now.getMonth() + start_month_inc ) % 11;  // get next month; months start at 0
+   var days = get_3rd_friday(yr,mo) ;
    if(mo == 0){
       yr = yr + 1 ;
     }
-    var days = get_3rd_friday(yr,mo) ;
+    if(days < 1){
+       mo = (mo + 1) % 12;
+       if(mo == 0){
+         yr = yr + 1 ;
+	 }	   
+     days = get_3rd_friday(yr,mo) ;
+     }
     document.getElementById("dte0").innerHTML=days ;
     document.getElementById("month0").innerHTML= month_text + " Options" ;
     // do 2nd calendar 
-    mo = (now.getMonth() + start_month_inc + 1) % 12;  //  months start at 0
+    mo = (mo + start_month_inc + 1) % 12;  //  months start at 0
     if(mo == 0){  // reset to jan and inc year
        yr = yr + 1 ;
     }  
@@ -202,7 +209,7 @@ function updateClick(){
     document.getElementById("dte1").innerHTML=days ;
     document.getElementById("month1").innerHTML= month_text + " Options" ;
     // do 3rd calendar
-    mo = (now.getMonth() + start_month_inc + 2) % 11;  //  months start at 0
+    mo = (mo + start_month_inc + 1) % 11;  //  months start at 0
     if(mo == 0){
        yr = yr + 1 ;
     }   
