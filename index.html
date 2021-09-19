@@ -35,7 +35,7 @@
                 <h1 class="title">Options Trading Tools</h1>
                 <nav>
                     <ul>
-                        <li><a href="graph.html"> graph page</a></li>
+                        <li><a href="graph.html"> graphs</a></li>
                         <li><a href="page_two.html"> Strategies</a></li>
                         <li><a href="page_three.html"> Links</a></li>
                     </ul>
@@ -99,6 +99,8 @@ td {
    font-weight: bold ;
    text-align: center ;
 }
+
+	   
 .body {
     //min-height: 50vh;  
     max-width: 200px;
@@ -114,10 +116,10 @@ td {
             <tr>
                 <td class="td1" width="125px" height="40px" id = "dte0"> 0</td>
             </tr>
-            <tr>
+            <tr  >
                 <td>Days Until</td>
             </tr>
-            <tr>
+            <tr >
                 <td id="month0"> Jun Options</td>
             </tr>
             <tr>
@@ -186,17 +188,14 @@ function updateClick(){
    var start_month_inc = 0  ;  // 0 = start at this month, 1 = start next month
    var now = new Date() ; // get today
    var yr = now.getFullYear() ;
-   var mo = (now.getMonth() + start_month_inc ) % 11;  // get next month; months start at 0
+   var mo = (now.getMonth() + start_month_inc ) % 12;  // get next month; months start at 0
    var days = get_3rd_friday(yr,mo) ;
-   if(mo == 0){
-      yr = yr + 1 ;
-    }
-    if(days < 1){
+     if(days < 1){
        mo = (mo + 1) % 12;
        if(mo == 0){
          yr = yr + 1 ;
-	 }	   
-     days = get_3rd_friday(yr,mo) ;
+	       }	   
+      days = get_3rd_friday(yr,mo) ;
      }
     document.getElementById("dte0").innerHTML=days ;
     document.getElementById("month0").innerHTML= month_text + " Options" ;
@@ -209,7 +208,7 @@ function updateClick(){
     document.getElementById("dte1").innerHTML=days ;
     document.getElementById("month1").innerHTML= month_text + " Options" ;
     // do 3rd calendar
-    mo = (mo + start_month_inc + 1) % 11;  //  months start at 0
+    mo = (mo + start_month_inc + 1) % 12;  //  months start at 0
     if(mo == 0){
        yr = yr + 1 ;
     }   
@@ -233,7 +232,7 @@ function get_3rd_friday(yr, mo){
     console.log(month_text);  // log mon
     if(date.getDay() == 5){   // day of week 5 = friday
        third_fri = date.getDate() + 14 ; 
-       date = new Date(2021,mo,third_fri) ;
+       date = new Date(yr,mo,third_fri) ;
 	   break ;
     }
    }
@@ -284,7 +283,7 @@ function detectmob() {
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h4> &nbsp &nbsp Copyright &copy 2021 James Leahy All Rights Reserved  <img src="img/os_logo.png" align="right" height="65px"></h4>
+                <h4> &nbsp &nbsp Copyright &copy 2021 James Leahy All Rights Reserved <img src="img/os_logo.png" align="right" height="65px"></h4>
             </footer>
         </div>
 
