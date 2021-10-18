@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+ <meta charset="utf-8">
+
+<head>
+
+   <body bgcolor = #ffffff >
+       <h3><center>Scatter Plots v .02 <a id="js_ver" style="font-size:12px">  js v 0.1 </a></center></h1>
+
+<style>.highcharts-figure, .highcharts-data-table table {
+  min-width: 310px; 
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#container {
+  height: 500px; 
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #EBEBEB;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+table    { border: 1px solid gray; margin-left:auto; margin-right:auto; }
+            input    { width: 220px; }
+            select   { width: 220px; }
+            textarea {  border: 2px solid black; color: #000000;
+	    background-color: #fcfcfc ;}
+
+            #btnConnect    { width: 110px; }
+            #btnDisconnect { width: 110px; }
+            #btnSend       { width: 100px; }
+
+     .ex1 {
+         margin-left: 1px;
+	  margin-right: 10px;
+	  float: right ;
+     }
+
+     .ex2 {
+        margin-left: 15px;
+        float: right ;
+     }
+
+
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="https://code.highcharts.com/modules/oldie-polyfills.js"></script>
+<![endif]-->
+<script src="https://polyfill.io/v3/polyfill.js?features=default%2Ces2015%2CElement.prototype.dataset%2CXMLHttpRequest"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description"  style="font-size:11px">
+         3D scatter plot.  Licensed from <a href="https://highcharts.com/">Highcharts.com ></a>  <a style="font-size:11px">  under  <a   style="font-size:11px"  rel="license" href="https://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution Non-Commercial License ></a>
+    </p>
+
+</figure>
+<!--[if lt IE 9]>
+  <script src="https://code.highcharts.com/modules/oldie.js"></script>
+<![endif]-->
+<script src="https://code.highcharts.com/themes/sand-signika.js"></script>
+
+
+
+
+
+     <!--  Parameters Table -->
+     <table>
+            <tr>
+                <td width="180px">WS Protocol</td>
+                <td>
+                    <select id="protocol">
+                        <option value="ws" >ws</option>
+                        <option value="wss" selected="selected">wss</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" id="username"/></td>
+				<td></td>
+				<td> Chart Override </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" id="password"/></td>
+				<td></td>
+  		        <td><input id="axes_default"    type="button" value="Default" style="width:80px"   onclick="axes_defaultClick()">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</td>		
+			
+            </tr>
+
+			<tr>
+                <td>Load CSV File</td>
+                <td><input style="margin-left:1px"  type='file' accept='text/plain' onchange='openFile(event)'></td>
+							<td> x min </td>
+			    <td> <input type="text" id="x_min" name="x_min" style="width:50px">&nbsp;&nbsp
+			    </td>
+				<td> x max </td>
+			    <td> <input type="text" id="x_max" name="x_max" style="width:50px">
+			    </td>
+
+            </tr>
+            <tr>
+            <tr>
+ 	        <td width="180px"> Save Data</td>
+		<td> <button id="b" style="width:110px" >Export file</button>&nbsp;&nbsp
+             <input id="reload"    type="button" value="Reload" style="width:110px"   onclick="reloadClick()">&nbsp;&nbsp;
+
+	    </td>
+				<td> y min </td>
+			    <td> <input type="text" id="y_min" name="y_min" style="width:50px">&nbsp;&nbsp
+			    </td>
+				<td> y max </td>
+			    <td> <input type="text" id="y_max" name="y_max" style="width:50px">
+			    </td>
+
+		
+	    </tr>
+                <td>Plot</td>
+                <td>
+                    <input id="btnConnect"    type="button" value="Scatter Plot "    onclick="do_plotClick()">&nbsp;&nbsp;
+                    <input id="btnDisconnect" type="button" value="test" onclick="testClick()">
+                </td>
+
+				<td> z min </td>
+			    <td> <input type="text" id="z_min" name="z_min" style="width:50px">&nbsp;&nbsp
+			    </td>
+				<td> z max </td>
+			    <td> <input type="text" id="z_max" name="z_max" style="width:50px">
+			    </td>
+            </tr>
+
+     </table><br/>
+	 <div align="center" >
+      <textarea  id="incomingMsgOutput" rows="20" cols="90"  placeholder="text goes here"  style= autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+	  <br>
+	  </div>
+<br>
+    <div align="center" >
+        <br>
+    <p id="copyright" align="center" style="color:blue ; font-size:12px"> &nbsp Copyright &copy 2021 James Leahy All Rights Reserved </p>
+    </div>
+<script src="highcharts_scatter.js"></script>
+</body>
+</html>
