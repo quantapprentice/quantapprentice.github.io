@@ -22,7 +22,7 @@ var z_min ;
 
 
 // set a version for javascript in the header
-document.getElementById("js_ver").innerHTML = " js v0.1c" ;
+document.getElementById("js_ver").innerHTML = " js v0.1d" ;
 
 
 function clear_array(array){
