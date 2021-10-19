@@ -41,6 +41,15 @@ function clear_textarea(){
     document.getElementById("incomingMsgOutput").value = "";
 }
 
+function init_graph_data(){
+	clear_textarea() ;  //
+	axes_defaultClick() ; //  clear user override
+	x_label = "x axis = " ;
+	y_label = "y axis = " ;
+	z_label = "z axis = " ;
+
+}	
+
 
 // read file from user selected folder
 var openFile = function(event) {
@@ -69,8 +78,7 @@ function parse_csv(text){
     var temp = text.split("\n") ; // split lines
     // remove the last line because it's null
     temp = temp.slice(0,temp.length -1) ;
-	clear_textarea() ;  //
-	axes_defaultClick() // 
+    init_graph_data() ;
    // write_to_textarea(text) ;  // limit number of lines displayed
     document.getElementById("incomingMsgOutput").value += text + "\r\n";
     for (line in temp){
@@ -361,7 +369,7 @@ Highcharts.setOptions({
     }
   },
   title: {
-    text: 'Draggable box'
+    text: ' '
   },
   subtitle: {
     text: 'Click and drag the plot area to rotate in space'
