@@ -95,8 +95,8 @@ function parse_csv(text){
 				var header = temp[0].slice(1,temp[0].length) ;
 				var head = header.split(/[\s,]+/) ; // split on " " or ","
 				x_label = "x axis = " + head[0] ;
-				y_label = "y axis = " + head[1] ;
-				z_label = "z axis = " + head[2] ;
+				y_label = "y axis = " + head[2] ;
+				z_label = "z axis = " + head[1] ;
 			}
 		}
    }
