@@ -22,7 +22,7 @@ var z_min ;
 
 
 // set a version for javascript in the header
-document.getElementById("js_ver").innerHTML = " js v0.1b" ;
+document.getElementById("js_ver").innerHTML = " js v0.1c" ;
 
 
 function clear_array(array){
@@ -77,11 +77,12 @@ function parse_csv(text){
 		if(temp[line].indexOf("#") != 0){   // check first char
 		//	var temp_sample = temp[line].split(" ") ;
 		    var temp_sample = temp[line].split(/[\s,]+/) ; //split on space or comma
-			if(temp_sample[0].length >= 10){
+   		    var aa = parseFloat(temp_sample[0]) ;
+			if(aa >= 946713600){  // 1/1/2000 timecode
 				sub_array.push(parseFloat(temp_sample[0])*1000) ;
 				x_axis_type = "datetime" ;
 			}else{
-				sub_array.push(parseFloat(temp_sample[0])) ;
+				sub_array.push(aa) ;
 				x_axis_type = "linear" ;
 			}
 		    sub_array.push(parseFloat(temp_sample[2])) ;
