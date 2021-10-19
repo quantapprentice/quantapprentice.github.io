@@ -155,6 +155,18 @@ var textFile = null,
     
 })();
 
+function get_axis_values(){
+	// get x,y and z  column
+   var col1 = plot_array.map(function(value,index) { return value[0]; });
+   var col2 = plot_array.map(function(value,index) { return value[1]; });
+   var col3 = plot_array.map(function(value,index) { return value[2]; });
+   get_x_min_max(col1) ;
+   get_y_min_max(col2) ;
+   get_z_min_max(col3) ;
+   get_user_axes_values() ; // see if user overrides limits
+}
+
+
   function get_y_min_max(first_array){
      var comb_array ;
      //comb_array = first_array.concat(second_array) ;  // combine arrays
@@ -256,6 +268,7 @@ function axes_defaultClick(){
     document.getElementById("y_max").value = "";
     document.getElementById("z_min").value = "";
     document.getElementById("z_max").value = "";
+    get_axis_values() ;   // restore orig values
 }
 	
 
