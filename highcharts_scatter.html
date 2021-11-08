@@ -5,7 +5,7 @@
 <head>
 
    <body bgcolor = #ffffff >
-       <h3><center>Scatter Plots v .02 <a id="js_ver" style="font-size:12px">  js v 0.1 </a></center></h1>
+       <h3><center>Scatter Plots v .03a <a id="js_ver" style="font-size:12px">  js v 0.1 </a></center></h1>
 
 <style>.highcharts-figure, .highcharts-data-table table {
   min-width: 310px; 
@@ -65,8 +65,23 @@ table    { border: 1px solid gray; margin-left:auto; margin-right:auto; }
         margin-left: 15px;
         float: right ;
      }
+input[type="radio"] {
+	 border: 0px;
+    width: 100%;
+    height: 1em;
+}
 
-
+#busyDiv {
+  width: 60%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: yellow;
+  margin-top: 10px;
+  margin-bottom: 20px ;
+  margin-right: auto;
+  margin-left: auto ;
+  display: none ;
+}
 
 </style>
 
@@ -84,10 +99,14 @@ table    { border: 1px solid gray; margin-left:auto; margin-right:auto; }
 <figure class="highcharts-figure">
     <div id="container"></div>
     <p class="highcharts-description"  style="font-size:11px">
-         3D scatter plot.  Licensed from <a href="https://highcharts.com/">Highcharts.com ></a>  <a style="font-size:11px">  under  <a   style="font-size:11px"  rel="license" href="https://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution Non-Commercial License ></a>
+         Scatter plot.  Licensed from <a href="https://highcharts.com/">Highcharts.com </a>  <a style="font-size:11px">  under  <a   style="font-size:11px"  rel="license" href="https://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution Non-Commercial License </a>
     </p>
 
 </figure>
+<div id="busyDiv">
+   Please Wait:  calculating ...
+</div>
+
 <!--[if lt IE 9]>
   <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
@@ -151,7 +170,7 @@ table    { border: 1px solid gray; margin-left:auto; margin-right:auto; }
 	    </tr>
                 <td>Plot</td>
                 <td>
-                    <input id="btnConnect"    type="button" value="Scatter Plot "    onclick="do_plotClick()">&nbsp;&nbsp;
+                    <input id="btnConnect"    type="button" value="Scatter Plot "    onclick="prePlot()">&nbsp;&nbsp;
                     <input id="btnDisconnect" type="button" value="test" onclick="testClick()">
                 </td>
 
@@ -162,10 +181,45 @@ table    { border: 1px solid gray; margin-left:auto; margin-right:auto; }
 			    <td> <input type="text" id="z_max" name="z_max" style="width:50px">
 			    </td>
             </tr>
+			<tr>
+			  <td>Chart </td>
+			  <td>
+			  <label style="font-size:12px;">3D
+				<input id="threed_radio" style="height:1.3em; width:1.3em;" align:"left" type="radio" value="threed" name="radio1" value="threed" checked="checked" onclick="typeClick()" >&nbsp;&nbsp;
+			  </label>
+			  <label id="flat_radio" style="font-size:12px;">Flat
+				<input id="flat_radio" value="flat" style="height:1.3em; width:1.3em;" align:"left" type="radio" name="radio1" onclick="typeClick()">
+			  </label>&nbsp;&nbsp;
+
+			  <label style="font-size:12px;">TBA
+				<input id="10" style="height:1.3em; width:1.3em;" align:"left" type="checkbox" value="threed" name="check1" value="threed" checked="checked" onclick="checkClick()" >&nbsp;&nbsp;
+			  </label>
+			  <label style="font-size:12px;">TBA
+				<input id="11" style="height:1.3em; width:1.3em;" align:"left" type="checkbox" value="threed" name="check2" value="threed"  onclick="checkClick()" >&nbsp;&nbsp;
+			  </label>
+			  </td>
+
+			  <td>
+			  <label style="font-size:12px;">TBA
+				<input id="12 " style="height:1.3em; width:1.3em;" align:"left" type="checkbox" value="threed" name="check3" value="threed"  onclick="checkClick()" >&nbsp;&nbsp;
+			  </label>
+			  </td>
+			  <td>
+			  <label style="font-size:12px;">TBA
+				<input id="tba1_radio" style="height:1.3em; width:1.3em;" align:"left" type="radio" value="threed" name="radio2" value="threed" checked="checked" onclick="radioClick()" >&nbsp;&nbsp;
+			  </label>
+			  <label id="flat_radio" style="font-size:12px;">TBA
+				<input id="tba2_radio" value="flat" style="height:1.3em; width:1.3em;" align:"left" type="radio" name="radio2" onclick="radioClick()">
+			  </label>&nbsp;&nbsp;
+
+
+ 		   </td>
+			  
+			</tr>
 
      </table><br/>
 	 <div align="center" >
-      <textarea  id="incomingMsgOutput" rows="20" cols="90"  placeholder="text goes here"  style= autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      <textarea  id="incomingMsgOutput" rows="17" cols="90"  placeholder="text goes here"  style= autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
 	  <br>
 	  </div>
 <br>
@@ -173,6 +227,6 @@ table    { border: 1px solid gray; margin-left:auto; margin-right:auto; }
         <br>
     <p id="copyright" align="center" style="color:blue ; font-size:12px"> &nbsp Copyright &copy 2021 James Leahy All Rights Reserved </p>
     </div>
-<script src="js/highcharts_scatter.js"></script>
+<script src="highcharts_scatter.js"></script>
 </body>
 </html>
